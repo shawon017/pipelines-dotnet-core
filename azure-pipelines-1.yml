@@ -15,7 +15,7 @@ steps:
 - task: AzureCLI@2
   inputs:
     scriptLocation: 'scriptPath'
-    scriptPath: 'test/create_fileshare.ps1'
+    scriptPath: '**/create_fileshare.ps1'
 
 - script: |
     echo Add other tasks to build, test, and deploy your project.
