@@ -10,7 +10,16 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-- script: echo Hello, world!
+- script: resourceGroupName="BIS_PILOT"
+          storageAccountName="ssodnapilotblob01dev"
+          region="westus2"
+          $shareName = "myshare"
+
+          New-AzRmStorageShare `
+            -ResourceGroupName $resourceGroupName `
+            -StorageAccountName $storageAccountName `
+            -Name $shareName `
+            -QuotaGiB 1024 | Out-Null
   displayName: 'Run a one-line script'
 
 - script: |
