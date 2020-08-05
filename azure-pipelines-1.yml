@@ -12,7 +12,6 @@ steps:
   displayName: 'Run a one-line script'
 - task: AzureCLI@2
   inputs:
-    azureSubscription: 8833679-production-es-biedw(321b2a20-1798-463b-9011-55056ff5bc17)
     scriptType: 'ps'
     scriptLocation: 'inlineScript'
     inlineScript: |
