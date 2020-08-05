@@ -1,7 +1,5 @@
 # Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
+
 
 trigger:
 - master
@@ -14,9 +12,23 @@ steps:
   displayName: 'Run a one-line script'
 - task: AzureCLI@2
   inputs:
-    scriptType: ps
-    scriptLocation: 'scriptPath'
-    scriptPath: '**/create_fileshare.ps1'
+    azureSubscription: 8833679-production-es-biedw(321b2a20-1798-463b-9011-55056ff5bc17)
+    scriptType: 'ps'
+    scriptLocation: 'inlineScript'
+    inlineScript: |
+      $resourceGroupName="BIS_PILOT"
+      $storageAccountName="ssodnapilotblob01dev"
+      $region="westus2"
+      $shareName = "myshare"
+            
+      New-AzRmStorageShare `
+          -ResourceGroupName $resourceGroupName `
+          -StorageAccountName $storageAccountName `
+          -Name $shareName `
+          -QuotaGiB 1024 | Out-Null
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
 
 - script: |
     echo Add other tasks to build, test, and deploy your project.
