@@ -10,17 +10,12 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-- script: resourceGroupName="BIS_PILOT"
-          storageAccountName="ssodnapilotblob01dev"
-          region="westus2"
-          $shareName = "myshare"
-
-          New-AzRmStorageShare `
-            -ResourceGroupName $resourceGroupName `
-            -StorageAccountName $storageAccountName `
-            -Name $shareName `
-            -QuotaGiB 1024 | Out-Null
+- script: 
   displayName: 'Run a one-line script'
+- task: AzureCLI@2
+  inputs:
+    scriptLocation: 'scriptPath'
+    scriptPath: 'test/create_fileshare.ps1'
 
 - script: |
     echo Add other tasks to build, test, and deploy your project.
